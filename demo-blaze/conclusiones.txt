@@ -1,0 +1,28 @@
+Título:
+   - Conclusiones del ejercicio de automatización sobre el API de https://api.demoblaze.com/
+
+Servicios evaluados:
+   - signup
+   - login
+
+Herramienta utilizada:
+   - Karate Labs
+
+Hallazgos:
+   - Código HTTP inapropiado en login fallido:
+        Peticiones POST con credenciales inválidas.
+        Resultado es HTTP 200 OK con mensaje {"errorMessage":"Wrong password."}.
+        En múltiples escenarios donde se intenta registrar un usuario ya existente, el sistema responde con HTTP 200 OK.
+   - Código HTTP 500 ante entradas inválidas:
+        En escenarios con username: null o JSON malformado, el sistema responde con HTTP 500 Internal Server Error.
+   - Validación débil de parámetros:
+        Se usa pass en lugar de password, y el sistema responde con HTTP 200 OK y mensaje de error "Bad parameter".
+        Se usa usename en lugar de username, y el sistema responde con HTTP 200 OK y mensaje "Bad parameter, missing username or password".
+   - Tiempo de respuesta variable:
+        Los tiempos de respuesta varían entre 226 ms y 1092 ms, incluso para escenarios similares.
+
+Conclusiones generales:
+   - El endpoint login permite autenticación exitosa y entrega de token cuando las credenciales son válidas. Sin embargo, responde con HTTP 200 OK incluso cuando las credenciales son incorrectas, lo cual es inapropiado.
+   - El sistema no valida estrictamente el esquema del JSON, permitiendo campos adicionales o mal escritos sin bloquear la petición.
+   - El endpoint signup permite el registro exitoso de usuarios con nombres dinámicos. Al intentar registrar un usuario ya existente, se devuelve HTTP 200 OK en lugar de un código de error como 409 Conflict.
+   - El sistema acepta parámetros adicionales sin validación estricta, lo que puede ser un riesgo si no se controla adecuadamente.
