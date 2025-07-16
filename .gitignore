@@ -49,3 +49,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+demo-blaze/.idea/misc.xml
+demo-blaze/.idea/encodings.xml
+demo-blaze/.idea/git_toolbox_prj.xml

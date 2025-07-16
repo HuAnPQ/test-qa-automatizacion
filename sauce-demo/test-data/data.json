@@ -1,0 +1,19 @@
+{
+  "standardUser": {
+    "username": "standard_user",
+    "password": "secret_sauce"
+  },
+  "expect": {
+    "titleCart": "Swag Labs",
+    "yourCart": "Your Cart",
+    "checkout": "Checkout: Overview",
+    "checkoutInformation": "Checkout: Your Information",
+    "totalLabel": "Total: $71.26",
+    "completeHeader": "Thank you for your order!"
+  },
+  "checkoutData": {
+    "firstName": "QA",
+    "lastName": "Automatizador",
+    "postalCode": "ec123456"
+  }
+}
