@@ -1,0 +1,23 @@
+Título:
+   - Conclusiones del ejercicio de automatización sobre el sitio https://www.saucedemo.com/
+
+Servicios Testeados:
+   - Inicio de Sesión
+   - Añadir Productos al Carrito
+   - Validar el Carrito
+   - Ingresar la información de Checkout
+   - Confirmar resumen de Checkout
+   - Realizar la confirmación de la Compra
+
+Herramienta utilizada:
+   - Playwright TS y POM
+
+Hallazgos:
+   - Tiempo de ejecución total bajo pero con pasos desbalanceados:
+        El flujo completo se ejecuta en 1.5 segundos, lo cual es eficiente. Sin embargo, el paso de inicio de sesión toma 755 ms, mientras que otros pasos como la confirmación de compra solo toman 33 ms.
+   - No se incluyen escenarios negativos:
+        El caso de prueba se enfoca únicamente en el flujo exitoso con un usuario estándar.
+
+Conclusiones generales:
+   - El flujo de compra como usuario estándar se ejecuta correctamente y en tiempo eficiente.
+   - El login representa el paso más pesado en términos de tiempo, lo cual podría afectar la experiencia si se repite en otros flujos.
