@@ -2,7 +2,7 @@
 import { Page, expect, Locator } from '@playwright/test';
 
 export class BrowseTheWeb {
-  private constructor(private page: Page) {}
+  public constructor(private page: Page) {}
 
   static using(page: Page) {
     return new BrowseTheWeb(page);
