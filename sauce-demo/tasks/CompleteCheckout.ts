@@ -19,6 +19,7 @@ export class CompleteCheckout {
 
     // Checkout: Your Information
     await browseTheWeb.click(CART_PAGE.CHECKOUT_BUTTON);
+    await browseTheWeb.assertText(CHECKOUT_OVERVIEW_PAGE.PAGE_TITLE, 'Checkout: Your Information');
     
     await browseTheWeb.fill(CHECKOUT_INFO_PAGE.FIRST_NAME_INPUT, this.firstName);
     await browseTheWeb.fill(CHECKOUT_INFO_PAGE.LAST_NAME_INPUT, this.lastName);

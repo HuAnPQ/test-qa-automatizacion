@@ -10,7 +10,7 @@ export class OrderSuccess {
 
     async answeredBy(actor: Actor): Promise<void> {
         const browseTheWeb = actor.abilityTo(BrowseTheWeb);
-        await browseTheWeb.assertVisible(CHECKOUT_COMPLETE_PAGE.PONY_EXPRESS_IMAGE);
         await browseTheWeb.assertText(CHECKOUT_COMPLETE_PAGE.COMPLETE_HEADER, 'Thank you for your order!');
+        await browseTheWeb.assertVisible(CHECKOUT_COMPLETE_PAGE.PONY_EXPRESS_IMAGE);
     }
 }
