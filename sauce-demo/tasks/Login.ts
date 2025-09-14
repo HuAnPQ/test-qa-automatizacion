@@ -13,8 +13,13 @@ export class Login {
   async performAs(actor: Actor) {
     const browseTheWeb = actor.abilityTo(BrowseTheWeb);
     await browseTheWeb.navigateTo('https://www.saucedemo.com/');
+    
+    await browseTheWeb.assertgetByText('Swag Labs');
+
     await browseTheWeb.fill(LOGIN_PAGE.USERNAME_INPUT, this.username);
     await browseTheWeb.fill(LOGIN_PAGE.PASSWORD_INPUT, this.password);
     await browseTheWeb.click(LOGIN_PAGE.LOGIN_BUTTON);
+
+    await browseTheWeb.assertText(LOGIN_PAGE.PAGE_HEADER, 'Swag Labs');
   }
 }
