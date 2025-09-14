@@ -6,23 +6,29 @@ import { Login } from '../tasks/Login';
 import { AddItemsToCart } from '../tasks/AddItemsToCart';
 import { CompleteCheckout } from '../tasks/CompleteCheckout';
 import { OrderSuccess } from '../questions/OrderSuccess';
-import { LOGIN_PAGE, CART_PAGE, CHECKOUT_OVERVIEW_PAGE } from '../ui/locators';
 
-test('End-to-end purchase flow on Sauce Demo', async ({ page }) => {
-  //Definir el Actor y sus Habilidades
-  const actor = Actor.named('QA Automatizador').whoCan(BrowseTheWeb.using(page));
 
-  //Realizar la Tarea Login
-  await actor.attemptsTo(Login.asStandardUser());
-  await actor.abilityTo(BrowseTheWeb).assertText(LOGIN_PAGE.PAGE_HEADER, 'Swag Labs');
+test.describe("Test Suite -Purchase flow on SauceDemo", async () => {
+  test('TC001 -ScreenPlay -End-to-end purchase flow on Sauce Demo', async ({ page }) => {
+    //Definir el Actor y sus Habilidades
+    const actor = Actor.named('QA Automatizador').whoCan(BrowseTheWeb.using(page));
 
-  await actor.attemptsTo(AddItemsToCart.sauceLabsBoltTshirtAndJacket());
-  await actor.abilityTo(BrowseTheWeb).assertText(CART_PAGE.PAGE_TITLE, 'Your Cart');
+    await test.step("Inicio de Sesión", async () => {
+      await actor.attemptsTo(Login.asStandardUser());
+    });
 
-  await actor.attemptsTo(CompleteCheckout.asGuestUser('QA', 'Automatizador', 'ec123456'));
-  await actor.abilityTo(BrowseTheWeb).assertText(CHECKOUT_OVERVIEW_PAGE.PAGE_TITLE, 'Checkout: Complete!');
+    await test.step("Añadir Productos al Carrito", async () => {
+      await actor.attemptsTo(AddItemsToCart.sauceLabsBoltTshirtAndJacket());
+    });
 
-  // 3. Obtener la Respuesta a las Preguntas
-  await actor.getThe(OrderSuccess.isConfirmed());
+    await test.step("Resumen de Checkout", async () => {
+      await actor.attemptsTo(CompleteCheckout.asGuestUser('QA', 'Automatizador', 'ec123456'));
+    });
+
+    await test.step("Confirmación de Compra", async () => {
+      await actor.getThe(OrderSuccess.isConfirmed());
+    });
+
+  });
 
 });

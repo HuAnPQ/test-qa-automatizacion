@@ -2,7 +2,7 @@
 import { Page, expect, Locator } from '@playwright/test';
 
 export class BrowseTheWeb {
-  public constructor(private page: Page) {}
+  public constructor(private page: Page) { }
 
   static using(page: Page) {
     return new BrowseTheWeb(page);
@@ -26,6 +26,10 @@ export class BrowseTheWeb {
 
   async assertText(selector: string, expectedText: string) {
     await expect(this.page.locator(selector)).toContainText(expectedText);
+  }
+
+  async assertgetByText(expectedText: string) {
+    await expect(this.page.getByText(expectedText)).toContainText(expectedText);
   }
 
   async assertVisible(selector: string) {
